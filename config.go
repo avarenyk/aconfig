@@ -12,12 +12,12 @@ import (
 const defaultConfigLocation = "conf.json"
 
 type LoadOptions struct {
-	configLocation string //absolute path to conf file
+	ConfigLocation string //absolute path to conf file
 }
 
 var (
 	defaultLoadOptions = LoadOptions{
-		configLocation: "",
+		ConfigLocation: "",
 	}
 	configLocation string
 	executable     string
@@ -82,8 +82,8 @@ func getConfigLocation(options *LoadOptions) string {
 	}
 
 	// if path provided in options use it
-	if len(options.configLocation) > 0 {
-		return options.configLocation
+	if len(options.ConfigLocation) > 0 {
+		return options.ConfigLocation
 	}
 
 	return filepath.Join(filepath.Dir(executable), configLocation)

@@ -10,17 +10,26 @@ or path to config file could be provided by :
 # Usage
 
 ```
+package main
+
+import (
+	"github.com/avarenyk/config"
+	"log"
+)
+
 type MyConfig struct {
-    option1     string
-    option2     int
+	Option1 string
+	Option2 int
 }
 
-func main (){
-    config := MyConfig{}
-    // make sure reference to config is passed to function
-    LoadJsonConfig(&config, nill)
-    // or 
-    LoadJsonConfig(&config, &LoadOptions{"/path/to/config.json"})
+func main() {
+	c := MyConfig{}
+	// make sure reference to config is passed to function
+	config.LoadJsonConfig(&c, nil)
+	// or
+	config.LoadJsonConfig(&c, &config.LoadOptions{"/absolute/path/to/config.json"})
+
+	log.Fatal(c)
 }
 
 ```
