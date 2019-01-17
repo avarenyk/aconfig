@@ -1,4 +1,4 @@
-# config
+# aconfig
 
 Package provide method to load json config from file to custom structs.
 
