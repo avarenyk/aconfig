@@ -3,7 +3,6 @@ package aconfig
 import (
 	"encoding/json"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -29,7 +28,7 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	flag.StringVar(&configLocation, "config-location", defaultConfigLocation, "an absolute path to config file")
+	flag.StringVar(&configLocation, "config-location", defaultConfigLocation, "a path to config file")
 }
 
 func LoadJsonConfig(config interface{}, options *LoadOptions) {
@@ -57,12 +56,6 @@ func LoadJsonConfig(config interface{}, options *LoadOptions) {
 
 	configLocation = getConfigLocation(options)
 
-	// check that given path is absolute
-	if !isValidConfigLocation(configLocation) {
-		err = fmt.Errorf("path to config file must be an absolute. %s given", configLocation)
-		return
-	}
-
 	// read contents of file
 	fileContents, err := ioutil.ReadFile(configLocation)
 	if err != nil {
@@ -87,9 +80,4 @@ func getConfigLocation(options *LoadOptions) string {
 	}
 
 	return filepath.Join(filepath.Dir(executable), configLocation)
-}
-
-// check config location path
-func isValidConfigLocation(configLocation string) bool {
-	return filepath.IsAbs(configLocation)
 }

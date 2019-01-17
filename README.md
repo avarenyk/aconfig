@@ -27,7 +27,7 @@ func main() {
 	// make sure reference to config is passed to function
 	config.LoadJsonConfig(&c, nil)
 	// or
-	config.LoadJsonConfig(&c, &config.LoadOptions{"/absolute/path/to/config.json"})
+	config.LoadJsonConfig(&c, &config.LoadOptions{"/path/to/config.json"})
 
 	log.Fatal(c)
 }

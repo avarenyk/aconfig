@@ -27,22 +27,3 @@ func TestGetConfigLocation(t *testing.T) {
 		}
 	}
 }
-
-func TestValidPath(t *testing.T) {
-	var tests = []struct {
-		path  string
-		valid bool
-	}{
-		{"/var/lib/conf.jos", true},
-		{"./var/lib/conf.json", false},
-		{"var/lib/conf.json", false},
-	}
-
-	for _, test := range tests {
-		isValid := isValidConfigLocation(test.path)
-
-		if isValid != test.valid {
-			t.Errorf("Is valid path %s, expected %t received %t", test.path, test.valid, isValid)
-		}
-	}
-}
